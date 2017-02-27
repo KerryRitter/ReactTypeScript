@@ -3,12 +3,7 @@
 var gulp = require("gulp");
 var cache = require("gulp-cached");
 
-var targets = [
-  { description: "bootstrap-fonts", src: "./node_modules/bootstrap-sass/assets/fonts/**/*.*", dest: "./dist/fonts" },
-  { description: "images", src: "./src/images/**/*.*", dest: "./dist/images" }
-];
-
-function copy(options) {
+function copy(targets, options) {
   function run(target) {
     gulp.src(target.src)
       .pipe(cache(target.description))
@@ -26,7 +21,12 @@ function copy(options) {
   }
 }
 
-module.exports = {
-  build: function() { return copy({ shouldWatch: false }); },
-  watch: function() { return copy({ shouldWatch: true }); }
-};
+module.exports = function(targets) {
+  targets = targets || [];
+  targets.push({ description: "images", src: "public/images/**/*.*", dest: "dist/public/images" })
+
+  return {
+    build: function() { return copy(targets, { shouldWatch: false }); },
+    watch: function() { return copy(targets, { shouldWatch: true }); }
+  };
+}

@@ -10,8 +10,8 @@ let fluentProvider = makeFluentProvideDecorator(container);
 
 let provideNamed = function(identifier: any, name: any) {
     return fluentProvider(identifier)
-              .whenTargetNamed(name)
-              .done();
+        .whenTargetNamed(name)
+        .done();
 };
 
 let {
@@ -31,5 +31,5 @@ export {
     lazyInject,
     lazyInjectNamed,
     lazyInjectTagged,
-    lazyMultiInject
+    lazyMultiInject,
 };
