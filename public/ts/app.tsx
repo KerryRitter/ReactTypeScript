@@ -10,9 +10,9 @@ export class App extends React.Component<Props, any> {
     
     render() {
         return (
-        <div>
-            { this.props.children }
-        </div>
+            <div>
+                { this.props.children }
+            </div>
         );
     }
 }
